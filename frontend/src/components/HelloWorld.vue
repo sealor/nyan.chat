@@ -1,6 +1,8 @@
 <script setup>
 import {reactive} from 'vue'
 import {Greet} from '../../wailsjs/go/main/App'
+import DOMPurify from 'isomorphic-dompurify'
+import {marked} from 'marked'
 
 const data = reactive({
   name: "",
@@ -9,7 +11,7 @@ const data = reactive({
 
 function greet() {
   Greet(data.name).then(result => {
-    data.resultText = result
+    data.resultText = DOMPurify.sanitize(marked.parse(result))
   })
 }
 
@@ -17,7 +19,7 @@ function greet() {
 
 <template>
   <main>
-    <div id="result" class="result">{{ data.resultText }}</div>
+    <div id="result" class="result" v-html="data.resultText" />
     <div id="input" class="input-box">
       <input id="name" v-model="data.name" autocomplete="off" class="input" type="text"/>
       <button class="btn" @click="greet">Greet</button>
