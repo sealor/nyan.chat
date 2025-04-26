@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+
+Name=Nyan.Chat
+GenericName=Chat Application
+Comment=Chat like a cosmic cat! 🐱
+Categories=Chat;Office;Network;
+
+# ~/bin/nyan-chat
+Exec=nyan-chat
+# ~/.icons/nyan-chat.png
+Icon=nyan-chat
